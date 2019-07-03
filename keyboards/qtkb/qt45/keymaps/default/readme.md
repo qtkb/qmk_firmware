@@ -1,4 +1,4 @@
-![qt45](https://i.imgur.com/2qrHa0V.png)
+![qt45](https://i.imgur.com/GmPh3Bw.png)
 
 # Default qt45 Layout
 
