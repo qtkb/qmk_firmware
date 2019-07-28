@@ -15,34 +15,11 @@
 */
 #include QMK_KEYBOARD_H
 
-typedef struct
-{
-  bool is_press_action;
-  int state;
-} tap;
-
-enum
-{
-  SINGLE_TAP = 1,
-  SINGLE_HOLD = 2,
-  DOUBLE_TAP = 3,
-  DOUBLE_HOLD = 4,
-  DOUBLE_SINGLE_TAP = 5, //send two single taps
-  TRIPLE_TAP = 6,
-  TRIPLE_HOLD = 7
-};
-
 // Tap dance
 enum {
   LSFT_CAPS,
   RSFT_CAPS
 };
-
-int cur_dance (qk_tap_dance_state_t *state);
-
-void lsft_caps_on_each_tap (qk_tap_dance_state_t *state, void *user_data);
-void lsft_caps_finished (qk_tap_dance_state_t *state, void *user_data);
-void lsft_caps_reset (qk_tap_dance_state_t *state, void *user_data);
 
 // Layers
 enum
@@ -86,6 +63,29 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,          _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,          _______, _______, \
     _______, _______, _______,                            _______,                            _______, _______,          _______, _______, _______)
   };
+
+typedef struct
+{
+  bool is_press_action;
+  int state;
+} tap;
+
+enum
+{
+  SINGLE_TAP = 1,
+  SINGLE_HOLD = 2,
+  DOUBLE_TAP = 3,
+  DOUBLE_HOLD = 4,
+  DOUBLE_SINGLE_TAP = 5, //send two single taps
+  TRIPLE_TAP = 6,
+  TRIPLE_HOLD = 7
+};
+
+int cur_dance (qk_tap_dance_state_t *state);
+
+void lsft_caps_on_each_tap (qk_tap_dance_state_t *state, void *user_data);
+void lsft_caps_finished (qk_tap_dance_state_t *state, void *user_data);
+void lsft_caps_reset (qk_tap_dance_state_t *state, void *user_data);
 
 /* Return an integer that corresponds to what kind of tap dance should be executed.
  *
@@ -164,7 +164,8 @@ void lsft_caps_finished (qk_tap_dance_state_t *state, void *user_data)
     case SINGLE_HOLD: break;
     case DOUBLE_SINGLE_TAP:
     case DOUBLE_TAP:
-    case DOUBLE_HOLD: unregister_mods(MOD_BIT(KC_LSHIFT)); layer_off(_LS); register_code(KC_CAPS);
+    case DOUBLE_HOLD: register_code(KC_CAPS);
+    default: unregister_mods(MOD_BIT(KC_LSHIFT)); layer_off(_LS);
   }
 }
 
@@ -203,7 +204,8 @@ void rsft_caps_finished (qk_tap_dance_state_t *state, void *user_data)
     case SINGLE_HOLD: break;
     case DOUBLE_SINGLE_TAP:
     case DOUBLE_TAP:
-    case DOUBLE_HOLD: unregister_mods(MOD_BIT(KC_RSHIFT)); layer_off(_RS); register_code(KC_CAPS);
+    case DOUBLE_HOLD: register_code(KC_CAPS);
+    default: unregister_mods(MOD_BIT(KC_RSHIFT)); layer_off(_RS);
   }
 }
 
