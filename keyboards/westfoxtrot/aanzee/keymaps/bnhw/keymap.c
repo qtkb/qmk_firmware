@@ -25,9 +25,9 @@ enum {
 enum
 {
     _QW = 0,
-    _FN = 1,
-    _LS = 2,
-    _RS = 3
+    _LS = 1,
+    _RS = 2,
+    _FN = 3
 };
 
 #define LS_CAPS TD(LSFT_CAPS)
@@ -42,13 +42,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LS_CAPS,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RS_CAPS,          KC_UP,   KC_END, \
     KC_F13,  KC_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, MO(_FN),          KC_LEFT, KC_DOWN, KC_RGHT),
 
-  [_FN] = LAYOUT_ansi(
-    RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, _______, \
-    _______, RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______, _______, _______, _______, KC_DEL,           _______, \
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,          _______,  \
-    _______,          _______, _______, _______, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______,          KC_PGUP, _______, \
-    _______, _______, _______,                            _______,                            _______, _______,          KC_HOME, KC_PGDN, KC_END),
-
   [_LS] = LAYOUT_ansi(
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______, _______, _______, _______,          _______, \
@@ -61,7 +54,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,          _______, \
     _______, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          _______,          _______,  \
     _______,          _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,          _______, _______, \
-    _______, _______, _______,                            _______,                            _______, _______,          _______, _______, _______)
+    _______, _______, _______,                            _______,                            _______, _______,          _______, _______, _______),
+
+  [_FN] = LAYOUT_ansi(
+    RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, _______, _______, \
+    _______, RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______, _______, _______, _______, KC_DEL,           _______, \
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,          _______,          _______,  \
+    _______,          _______, _______, _______, _______, _______, _______, KC_MUTE, KC_VOLD, KC_VOLU, _______, _______,          KC_PGUP, _______, \
+    _______, _______, _______,                            _______,                            _______, _______,          KC_HOME, KC_PGDN, KC_END)
   };
 
 typedef struct
