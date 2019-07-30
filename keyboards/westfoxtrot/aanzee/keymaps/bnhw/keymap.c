@@ -27,23 +27,29 @@ enum
     _QW = 0,
     _LS = 1,
     _RS = 2,
-    _FN = 3
+    _OV = 3,
+    _FN = 4
 };
 
 #define LS_CAPS TD(LSFT_CAPS)
 #define RS_CAPS TD(RSFT_CAPS)
+
+#define OV_LCTL LM(_OV, MOD_LCTL)
+#define OV_LGUI LM(_OV, MOD_LGUI)
+#define OV_LALT LM(_OV, MOD_LALT)
+#define OV_RALT LM(_OV, MOD_LALT | MOD_LCTL)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QW] = LAYOUT_ansi(
     KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSLS, KC_GRV,  KC_HOME,\
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSPC,          KC_PGUP, \
-    KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,           KC_PGDN,  \
+    OV_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          KC_ENT,           KC_PGDN,  \
     LS_CAPS,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, RS_CAPS,          KC_UP,   KC_END, \
-    KC_F13,  KC_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, MO(_FN),          KC_LEFT, KC_DOWN, KC_RGHT),
+    KC_F13,  OV_LGUI, OV_LALT,                            KC_SPC,                             OV_RALT, MO(_FN),          KC_LEFT, KC_DOWN, KC_RGHT),
 
   [_LS] = LAYOUT_ansi(
-    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+    _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______, _______, _______, _______,          _______, \
     _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______, _______,          _______,          _______,  \
     _______,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, _______, _______,          _______, _______, \
@@ -54,6 +60,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,          _______, \
     _______, _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          _______,          _______,  \
     _______,          _______, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,          _______, _______, \
+    _______, _______, _______,                            _______,                            _______, _______,          _______, _______, _______),
+
+  [_OV] = LAYOUT_ansi(
+    _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSLS, KC_GRV,  _______, \
+    _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, _______,          _______, \
+    _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,          _______,          _______,  \
+    _______,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, _______,          _______, _______, \
     _______, _______, _______,                            _______,                            _______, _______,          _______, _______, _______),
 
   [_FN] = LAYOUT_ansi(
