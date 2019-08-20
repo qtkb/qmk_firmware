@@ -55,3 +55,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #   define DRIVER_LED_TOTAL RGBLED_NUM
 #   define RGB_MATRIX_CENTER { 115, 30 }
 #endif
+
+#define MOD_TAP_INTERRUPT
+#ifdef TAPPING_TERM
+    #undef TAPPING_TERM
+#endif
+#define TAPPING_TERM 150
