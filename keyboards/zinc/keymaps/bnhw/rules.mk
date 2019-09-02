@@ -97,3 +97,5 @@ SLEEP_LED_ENABLE = no    # Breathing sleep LED during USB suspend
 # $(info -- RGBLIGHT_ENABLE=$(RGBLIGHT_ENABLE))
 # $(info -- OPT_DEFS=$(OPT_DEFS))
 # $(info )
+
+SRC += rgb_matrix_config.c

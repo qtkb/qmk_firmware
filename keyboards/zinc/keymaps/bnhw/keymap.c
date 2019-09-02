@@ -11,7 +11,6 @@ rgblight_config_t RGB_current_config;
 #include "rgb_matrix_config.h"
 extern rgb_config_t rgb_matrix_config;
 rgb_config_t RGB_current_config;
-led_config_t g_led_config;
 #endif
 
 extern uint8_t is_master;
@@ -254,13 +253,9 @@ void matrix_init_user(void) {
       RGB_current_config = rgblight_config;
     #endif
     #ifdef RGB_MATRIX_ENABLE
-    if (is_master)
+    if (!is_master)
     {
-        g_led_config = g_led_config_left;
-    }
-    else
-    {
-        g_led_config = g_led_config_right;
+        swap_matrix_hands(&g_led_config);
     }
 
     rgb_matrix_init();
