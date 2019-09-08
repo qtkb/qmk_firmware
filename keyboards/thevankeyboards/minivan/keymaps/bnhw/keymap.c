@@ -7,7 +7,7 @@ enum
     _FN
 };
 
-#define SFT_ENT RSFT_T(KC_ENT)
+#define SY_ENT LT(_SY, KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* QWERTY
@@ -25,8 +25,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QW] = LAYOUT(
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
-    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_ENT,
-    KC_ESC,  KC_LGUI, KC_LALT,                   KC_SPC,  MO(_SY),          MO(_FN), XXXXXXX, XXXXXXX
+    KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+    KC_ESC,  KC_LGUI, KC_LALT,                   KC_SPC,  SY_ENT,           MO(_FN), XXXXXXX, XXXXXXX
   ),
 /* Symbols
  *
@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_SY] = LAYOUT(
     KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
     _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV,
-    _______, KC_UNDS, KC_MINS, KC_PLUS, KC_EQL, KC_PIPE,  KC_BSLS, KC_LCBR, KC_LBRC, KC_RBRC, KC_RCBR, _______,
+    _______, KC_UNDS, KC_MINS, KC_PLUS, KC_EQL,  KC_PIPE,  KC_BSLS, KC_LCBR, KC_LBRC, KC_RBRC, KC_RCBR, _______,
     _______, _______, _______,                   _______, _______,          _______, _______, _______
   ),
 /* Functions
