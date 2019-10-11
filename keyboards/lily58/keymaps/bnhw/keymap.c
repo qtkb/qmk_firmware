@@ -125,10 +125,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+static bool iota_gfx_init_success = false;
+
 void matrix_init_user(void) {
     //SSD1306 OLED init, make sure to add #define SSD1306OLED in config.h
     #ifdef SSD1306OLED
-        iota_gfx_init(!has_usb());   // turns on the display
+        iota_gfx_init_success = iota_gfx_init(!has_usb());   // turns on the display
     #endif
 }
 
@@ -148,6 +150,10 @@ const char *read_keylogs(void);
 // const char *read_timelog(void);
 
 void matrix_scan_user(void) {
+   if (!iota_gfx_init_success)
+   {
+      iota_gfx_init_success = iota_gfx_init(!has_usb());   // turns on the display
+   }
    iota_gfx_task();
 }
 
