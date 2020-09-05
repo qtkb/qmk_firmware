@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = { \
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * | Shift|   Z  |   X  |   C  |   V  |   B  |             |   N  |   M  |   ,  |   .  |   /  | Shift|
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |ADJUST| Win  | Win  | Alt  | GAME |Space |             | En/Sy| Bs/Fn| Left | Down |  Up  | Right|
+   * | F13  |ADJUST| Win  | Alt  | Ctrl |Space |             | En/Sy| Bs/Fn| Left | Down |  Up  | Right|
    * `-----------------------------------------'             `-----------------------------------------'
    */
 [_QWERTY] = LAYOUT_ortho_4x12(
@@ -64,19 +64,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = { \
 
   /* Functions
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |      |  F1  |  F2  |  F3  |  F4  |      |             |      |      |      |   ↑  |      | Del  |
+   * |      |  F1  |  F2  |  F3  |  F4  |      |             |      |      |   ↑  |      |      | Del  |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |  F5  |  F6  |  F7  |  F8  |      |             |      |      |   ←  |   ↓  |   →  |      |
+   * |      |  F5  |  F6  |  F7  |  F8  |      |             |      |   ←  |   ↓  |   →  | Play |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |  F9  |  F10 |  F11 |  F12 |      |             |      |      |      |      |      |      |
+   * |      |  F9  |  F10 |  F11 |  F12 |      |             |      | Prev | Vol- | Vol+ | Next |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      |      |      |      |      |      |             |      |      |      |      |      |      |
    * `-----------------------------------------'             `-----------------------------------------'
    */
   [_FUNCTIONS] = LAYOUT_ortho_4x12( \
-      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, KC_UP,   XXXXXXX, KC_DEL, \
-      _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   XXXXXXX,                   XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, \
-      _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, \
+      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   XXXXXXX,                   XXXXXXX, XXXXXXX, KC_UP,   XXXXXXX, XXXXXXX, KC_DEL, \
+      _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   XXXXXXX,                   XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, KC_MPLY, XXXXXXX, \
+      _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX,                   XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, _______, \
       _______, _______, _______, _______, _______, _______,                   _______, _______, _______, _______, _______, _______ \
       ),
 
