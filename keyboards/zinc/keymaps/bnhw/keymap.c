@@ -13,8 +13,6 @@ extern rgb_config_t rgb_matrix_config;
 rgb_config_t RGB_current_config;
 #endif
 
-extern uint8_t is_master;
-
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
@@ -143,7 +141,7 @@ void matrix_init_user(void) {
       RGB_current_config = rgblight_config;
     #endif
     #ifdef RGB_MATRIX_ENABLE
-    if (!is_master)
+    if (!is_keyboard_master())
     {
         swap_matrix_hands(&g_led_config);
     }
@@ -151,14 +149,4 @@ void matrix_init_user(void) {
     rgb_matrix_init();
     RGB_current_config = rgb_matrix_config;
     #endif
-}
-
-void suspend_power_down_user(void)
-{
-    rgb_matrix_set_suspend_state(true);
-}
-
-void suspend_wakeup_init_user(void)
-{
-    rgb_matrix_set_suspend_state(false);
 }
