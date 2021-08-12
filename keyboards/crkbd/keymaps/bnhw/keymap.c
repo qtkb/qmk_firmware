@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "keycode_config.h"
 
 extern uint8_t is_master;
 
@@ -11,6 +12,7 @@ enum layers {
 
 enum custom_keycodes {
   RGBRST = SAFE_RANGE,
+  SWPCG,
 };
 
 enum macro_keycodes {
@@ -21,6 +23,7 @@ enum macro_keycodes {
 #define GUI_ADJ LT(_ADJUST, KC_LGUI)
 #define SYM_ENT LT(_SYMBOL, KC_ENT)
 #define SNIP    S(G(KC_S))
+#define CTL_ESC LCTL_T(KC_ESC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = LAYOUT_split_3x6_3( \
@@ -32,17 +35,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_SYMBOL] = LAYOUT_split_3x6_3( \
   KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                   KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL, \
   _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                      KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_GRV, \
-  _______, KC_UNDS, KC_MINS, KC_PLUS, KC_EQL,  KC_PIPE,                   KC_BSLS, KC_LCBR, KC_LBRC, KC_RBRC, KC_RCBR, _______, \
+  _______, KC_UNDS, KC_MINS, KC_PLUS, KC_EQL,  KC_PIPE,                   KC_BSLS, KC_LCBR, KC_LBRC, KC_RBRC, KC_RCBR, _______,\
                                       _______, _______, _______, _______, _______, _______\
 ),
 [_FUN] = LAYOUT_split_3x6_3( \
-  _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   XXXXXXX,                   XXXXXXX, XXXXXXX, KC_UP,   XXXXXXX, XXXXXXX, KC_DEL, \
-  _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   XXXXXXX,                   XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, KC_MPLY, XXXXXXX, \
-  _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX,                   XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, _______, \
+  _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_DEL, \
+  _______, KC_F5,   KC_F6,   KC_F7,   KC_F8,   XXXXXXX,                   XXXXXXX, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_MPLY,\
+  _______, KC_F9,   KC_F10,  KC_F11,  KC_F12,  XXXXXXX,                   XXXXXXX, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT, _______,\
                                       _______, _______, _______, _______, _______, _______ \
 ),
 [_ADJUST] = LAYOUT_split_3x6_3( \
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   RGBRST,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+  XXXXXXX, XXXXXXX, SWPCG,   G(KC_E), XXXXXXX, XXXXXXX,                   RGBRST,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,\
   XXXXXXX, XXXXXXX, SNIP,    XXXXXXX, XXXXXXX, XXXXXXX,                   RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI, RGB_SPI, XXXXXXX,\
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, RGB_SPD, XXXXXXX,\
                                       _______, _______, _______, _______, _______, _______ \
@@ -123,6 +126,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           eeconfig_update_rgb_matrix_default();
           rgb_matrix_enable();
         #endif
+      }
+      break;
+    case SWPCG:
+      if (record->event.pressed) {
+        keymap_config.swap_lctl_lgui = !keymap_config.swap_lctl_lgui;
+        eeconfig_update_keymap(keymap_config.raw);
+        clear_keyboard(); // clear to prevent stuck keys
       }
       break;
   }
